@@ -1,0 +1,11 @@
+exclude .gitignore
+exclude .coverage
+exclude .travis.yml
+exclude .pyc
+include README.rst
+include setup.cfg
+prune .cache
+prune .git
+prune build
+prune dist
+recursive-include tests *
