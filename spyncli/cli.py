@@ -5,15 +5,17 @@ Usage:
   spyncli users login <username> <password>
   spyncli users register <first_name> <last_name> <email> <username> <password>
   spyncli users update [--name=first_name] [--surname=last_name] [--email=email] [--usr=username] [--pwd=password]
+  spyncli users read
   spyncli git read [--name=module name] [--id=module id] [--conf=configset id]
   spyncli git update <id> [--url=GIT_URL] [--usr=GIT_USER] [--pwd=GIT_PASS] [--b=GIT_BRANCH] [--name=MODULE_NAME]
   spyncli git delete <id>
   spyncli git create <configset_id> <git_url> <username> <password> <branch> <module_name>
+  spyncli git check <git_url> <username> <password> <branch> <module_name>
   spyncli configset read [--id=configset id] [--name=configset name]
   spyncli configset delete <id>
   spyncli configset create <name> (--url=LIST_GIT_URLS...) (--usr=LIST_USERS...) (--pwd=LIST_PASS...) (--b=LIST_BRANCH...) (--name=LIST_MODULE...)
   spyncli clones read [--id=CLONE_ID] [--name=CLONE_NAME]
-  spyncli replicas read
+  spyncli replicas read [--clone=clone id]
   spyncli replicas scale <clone_id> <final_number>
   spyncli -h | --help
   spyncli --version

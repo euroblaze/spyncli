@@ -69,4 +69,13 @@ class Git(Base):
                                      data=data)
             print(response.status_code, response.content.decode())
 
-
+        if self.options['check']:
+           data = {'url': self.options['<git_url>'],
+                   'username': self.options['<username>'],
+                   'password': self.options['<password>'],
+                   'branch': self.options['<branch>'],
+                   'module': self.options['<module_name>']}
+           response = requests.post(API + "git/git_module/check_git_creds",
+                                    auth=(auth_username, auth_password),
+                                    data=data)
+           print(response.status_code, response.content.decode())

@@ -54,3 +54,7 @@ class Users(Base):
             response = requests.put(API + "user/", auth=(auth_username, auth_password), data=data)
             print(response.status_code, response.content.decode())
 
+        if self.options['read']:
+           response = requests.get(API + "user/retrieve/",
+                                   auth=(auth_username, auth_password))
+           print(response.status_code, response.content.decode())

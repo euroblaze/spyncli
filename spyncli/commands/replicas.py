@@ -17,8 +17,12 @@ class Replicas(Base):
         auth_password = env.str("auth_password")
 
         if self.options['read']:
-            response = requests.get(API + "clouds/replicas", auth=(auth_username, auth_password))
-            print(response.status_code, response.content.decode())
+            if self.options['--clone']:
+                response = requests.get(API + "clouds/replicas/retrieve/%s" % self.options['--clone'], auth=(auth_username,auth_password))
+                print(response.status_code, response.content.decode())
+            else:
+                response = requests.get(API + "clouds/replicas", auth=(auth_username, auth_password))
+                print(response.status_code, response.content.decode())
 
         if self.options['scale']:
                 data = {'scale_number': str(self.options['<final_number>'])}
