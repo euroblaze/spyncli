@@ -3,3 +3,4 @@ from .git import *
 from .configset import *
 from .clones import *
 from .replicas import *
+from .deploy import *
