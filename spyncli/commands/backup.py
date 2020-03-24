@@ -17,9 +17,10 @@ class Backup(Base):
         auth_password = env.str("auth_password")
         dir_path = abspath(dirname(__file__))
 
-        if self.options['perform']:
+        if self.options['create']:
 		response = requests.post(API + "backups/backup",
 					auth=(auth_username, auth_password),
-					data={'namespace': self.options['<namespace>']})
+					data={'namespace': self.options['<namespace>'],
+						'name': self.options['<name>']})
 		print(response.status_code, response.content.decode())
 

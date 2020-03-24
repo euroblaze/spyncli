@@ -18,7 +18,7 @@ Usage:
   spyncli replicas read [--clone=clone id]
   spyncli replicas scale <clone_id> <final_number>
   spyncli deploy <configset_id> <odoo_username> <odoo_password> <snapshot>
-  spyncli backup perform <namespace>
+  spyncli backup create <namespace> <name>
   spyncli restore perform <namespace>
   spyncli -h | --help
   spyncli --version
