@@ -28,3 +28,7 @@ class Clones(Base):
                 response = requests.get(API + "clouds/clones/%s" % self.options['--name'], auth=(auth_username, auth_password))
                 print(response.status_code, response.content.decode())
 
+	if self.options['delete']:
+		response = requests.get(API + "clouds/clones/remove/%s" % self.options['<id>'], auth=(auth_username, auth_password))
+		print(response.status_code, response.content.decode())
+
