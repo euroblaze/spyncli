@@ -16,6 +16,7 @@ Usage:
   spyncli configset create <name> (--url=LIST_GIT_URLS...) (--usr=LIST_USERS...) (--pwd=LIST_PASS...) (--b=LIST_BRANCH...) (--name=LIST_MODULE...)
   spyncli clones read [--id=CLONE_ID] [--name=CLONE_NAME]
   spyncli clones delete <id>
+  spyncli clones bill <namespace>
   spyncli replicas read [--clone=clone id]
   spyncli replicas scale <clone_id> <final_number>
   spyncli deploy <configset_id> <odoo_username> <odoo_password> <snapshot>
