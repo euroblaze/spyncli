@@ -56,7 +56,7 @@ class Backup(Base):
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--verbose')
             chrome_options.add_experimental_option("prefs", {
-                "download.default_directory": "/home/andrej/Desktop",
+                "download.default_directory": download_dir,
                 "download.prompt_for_download": False,
                 "download.directory_upgrade": True,
                 "safebrowsing_for_trusted_sources_enabled": False,
@@ -67,18 +67,18 @@ class Backup(Base):
 
             # initialize driver object and change the <path_to_chrome_driver> depending on your directory where your chromedriver should be
             try:
-                driver = webdriver.Chrome(chrome_options=chrome_options, executable_path="/home/andrej/Downloads/chromedriver79")
+                driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver79")
             except:
                 try:
-                    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path="/home/andrej/Downloads/chromedriver80")
+                    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver80")
                 except:
                     try:
-                        driver = webdriver.Chrome(chrome_options=chrome_options, executable_path="/home/andrej/Downloads/chromedriver81")
+                        driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver81")
                     except:
                         print("u dont have chrome installed")
 
             # change the <path_to_place_downloaded_file> to your directory where you would like to place the downloaded file
-            download_dir = "/home/andrej/Desktop"
+            download_dir = self.options['<folder>']
             print(download_dir)
             print(driver)
             # function to handle setting up headless download
