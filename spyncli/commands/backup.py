@@ -105,7 +105,7 @@ class Backup(Base):
 						#'name': self.options['<name>']})
            #print(response.status_code, response.content.decode())
 
-	if self.options['read']:
-		response = requests.get(API + "backups/backup/%s" % self.options['<namespace>'],
-					auth=(auth_username, auth_password))
-		print(response.status_code, response.content.decode())
+        if self.options['read']:
+                response = requests.get(API + "backups/backup/%s" % self.options['<namespace>'],
+                                        auth=(auth_username, auth_password))
+                print(response.status_code, response.content.decode())
