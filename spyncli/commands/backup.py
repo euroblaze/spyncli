@@ -1,6 +1,6 @@
 from .base import Base
 from os.path import abspath, dirname
-from backup_func import *
+#from backup_func import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import os, time
