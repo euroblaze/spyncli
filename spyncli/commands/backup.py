@@ -3,7 +3,7 @@ from os.path import abspath, dirname
 #from backup_func import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import os, time
+import os, time, datetime
 from sys import platform
 
 class Backup(Base):
@@ -29,7 +29,7 @@ class Backup(Base):
         dir_path = abspath(dirname(__file__))
 
         if self.options['create']:
-            print("CREATE")
+            print("checking...")
             # instantiate a chrome options object so you can set the size and headless preference
             # some of these chrome options might be uncessary but I just used a boilerplate
             # change the <path_to_download_default_directory> to whatever your default download folder is located
@@ -52,7 +52,7 @@ class Backup(Base):
             # initialize driver object and change the <path_to_chrome_driver> depending on your directory where your chromedriver should be
             # Check for operating system::::
             if platform == "linux" or platform == "linux2":
-                print("LINUX")
+                print("checking....")
                 try:
                     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver79")
                 except:
@@ -62,11 +62,11 @@ class Backup(Base):
                         try:
                             driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver81")
                         except:
-                            print("u dont have chrome installed")
+                            print("You dont have chrome installed, please install Google Chrome and try again...")
             elif platform == "darwin":
-                print("OS X")
+                print("checking....")
             elif platform == "win32":
-                print("WINDOWS")
+                print("checking....")
                 try:
                     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver79.exe")
                 except:
@@ -76,10 +76,10 @@ class Backup(Base):
                         try:
                             driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=dir_path+"/chromedriver/chromedriver81.exe")
                         except:
-                            print("u dont have chrome installed")
+                            print("You dont have chrome installed, please install Google Chrome and try again...")
 
             # change the <path_to_place_downloaded_file> to your directory where you would like to place the downloaded file
-            print(download_dir)
+            print("checking.....")
             # function to handle setting up headless download
             self.enable_download_headless(driver, download_dir)
             #self.backup_database(self.options['<url>'], self.options['<password>'], self.options['database'], driver)
@@ -89,7 +89,7 @@ class Backup(Base):
                 if self.options['<database>'] == each_elem.text:
                     elem = driver.find_elements_by_class_name("btn-group-sm")[index-1]
                     backup_button = elem.find_elements_by_class_name("o_database_action")[0].click()
-                    print("yay found it ",index)
+                    print("checking......")
                     time.sleep(1)
                     elem = driver.find_elements_by_class_name("show")[0]
                     elem2 = elem.find_element_by_id("form_backup_db")
@@ -97,13 +97,15 @@ class Backup(Base):
                     elem_mpwd.send_keys(self.options['<password>'])
                     elem_btn = elem2.find_elements_by_class_name("btn-primary")
                     elem_btn[-1].click()
-                    time.sleep(6)
-            #os.rename(download_dir+"/"+self.options['<database>']+"*",self.options['<database>']+".zip")
-            #response = requests.post(API + "backups/backup",
-					#auth=(auth_username, auth_password),
-					#data={'namespace': self.options['<namespace>'],
-						#'name': self.options['<name>']})
-           #print(response.status_code, response.content.decode())
+                    time.sleep(20)
+                    while True:
+                        is_done = False
+                        if any('.crdownload' in files and self.options['<database>'] in files for files in os.listdir(download_dir)):
+                            print("downloading...")
+                            time.sleep(18)
+                        else:
+                            print("done!")
+                            break
 
         if self.options['read']:
                 response = requests.get(API + "backups/backup/%s" % self.options['<namespace>'],
