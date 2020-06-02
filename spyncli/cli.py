@@ -23,6 +23,8 @@ Usage:
   spyncli backup read <namespace>
   spyncli backup create <url> <password> <database> <folder>
   spyncli restore perform <namespace> <name>
+  spyncli containers read <namespace>
+  spyncli containers restart <namespace> <name>
   spyncli -h | --help
   spyncli --version
 
